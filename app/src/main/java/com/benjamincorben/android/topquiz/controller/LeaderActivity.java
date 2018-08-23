@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class leader extends AppCompatActivity {
+public class LeaderActivity extends AppCompatActivity {
 
     public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
     public static final String theNAME = "KEY_1";
@@ -59,3 +59,4 @@ public class leader extends AppCompatActivity {
         Toast.makeText(this, "sorted" + scoresMap.entrySet().toString(), Toast.LENGTH_SHORT).show();
     }
 }
+
