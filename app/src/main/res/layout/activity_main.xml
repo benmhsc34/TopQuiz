@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".controller.MainActivity">
+
+    <TextView
+        android:id="@+id/activity_main_greeting_txt"
+        android:layout_width="236dp"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="138dp"
+        android:layout_marginRight="138dp"
+        android:padding="20dp"
+        android:text="Welcome! What's your name?"
+        app:layout_constraintBottom_toTopOf="@+id/activity_main_name_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/activity_main_name_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:layout_marginTop="16dp"
+        android:hint="Please type your name"
+        app:layout_constraintBottom_toTopOf="@+id/activity_main_play_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_main_greeting_txt" />
+
+    <Button
+
+        android:id="@+id/activity_main_play_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="300dp"
+        android:layout_marginEnd="133dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginRight="133dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="11dp"
+        android:padding="30dp"
+        android:text="Let's play!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_main_name_input" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/activity_main_leaderboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Leaderboard" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
