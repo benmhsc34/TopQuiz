@@ -9,30 +9,42 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
+            android:id="@+id/leaderboard_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LEADERBOARD"
-            android:textSize="40dp"
-            android:gravity="center"
             android:background="#d9d9d9"
+            android:gravity="center"
             android:padding="10dp"
-            android:id="@+id/leaderboard_banner"/>
+            android:text="LEADERBOARD"
+            android:textSize="40dp" />
+
         <Button
+            android:id="@+id/alphabet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set alphabetically"
             android:layout_below="@+id/leaderboard_banner"
-            android:id="@+id/alphabet"
             android:paddingLeft="25dp"
-            android:paddingRight="25dp"/>
+            android:paddingRight="25dp"
+            android:text="Set alphabetically" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Set by score"
             android:layout_below="@+id/leaderboard_banner"
             android:layout_toRightOf="@+id/alphabet"
-            />
+            android:text="Set by score" />
+
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            tools:ignore="RtlHardcoded"
+            android:gravity="center"
+            android:textAlignment="textStart"
+
+            android:layout_marginLeft="160dp"/>
+
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

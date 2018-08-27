@@ -1,14 +1,19 @@
 package com.benjamincorben.android.topquiz.controller;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.renderscript.Element;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.benjamincorben.android.topquiz.R;
 
+import java.security.Key;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -33,30 +38,39 @@ public class LeaderActivity extends AppCompatActivity {
 
         String[] namesArray = existingNames.split(", ");
         String[] scoresStringArray = existingScores.split(", ");
-        ArrayList<Integer> scoresArray = new ArrayList();
+        ArrayList<Integer> scoresArray = new ArrayList<>();
 
-        for (int j = 0; j < scoresStringArray.length; j++) {
-            int foo = Integer.parseInt(scoresStringArray[j]);
+        for (String aScoresStringArray : scoresStringArray) {
+            int foo = Integer.parseInt(aScoresStringArray);
             scoresArray.add(foo);
         }
         HashMap<String, Integer> scoresMap = new HashMap<>();
-        for (int i = 0; i < namesArray.length; i++)
-            scoresMap.put(namesArray[i], scoresArray.get(i));
-
-        Log.d("unsorted", scoresMap.entrySet().toString());
-        Toast.makeText(this, "unsorted" + scoresMap.entrySet().toString(), Toast.LENGTH_SHORT).show();
+        for (int i = 0; i < scoresArray.size(); i++){
+            scoresMap.put(namesArray[i], scoresArray.get(i));}
 
         LinkedList list = new LinkedList(scoresMap.entrySet());
         // Defined Custom Comparator here
-        Collections.sort(list, new Comparator() {
-            public int compare(Object mapEntry1, Object mapEntry2) {
-                return ((Comparable) ((Map.Entry) (mapEntry1)).getValue())
-                        .compareTo(((Map.Entry) (mapEntry2)).getValue());
-            }
 
-        });
-        Log.d("sorted", scoresMap.entrySet().toString());
-        Toast.makeText(this, "sorted" + scoresMap.entrySet().toString(), Toast.LENGTH_SHORT).show();
+            Collections.sort(list, new Comparator() {
+                public int compare(Object mapEntry1, Object mapEntry2) {
+                    return ((Comparable) ((Map.Entry) (mapEntry1)).getValue())
+                            .compareTo(((Map.Entry) (mapEntry2)).getValue());
+                }
+
+            });
+
+
+
+
+        setContentView(R.layout.activity_leader2);
+        TextView textView = findViewById(R.id.textViewName);
+
+
+        for (Map.Entry<String, Integer> entry : scoresMap.entrySet()) {
+            textView.append(entry.getKey() +
+                    "\t\t\t\t" + entry.getValue() + "\n");
+        }
+
     }
 }
 
