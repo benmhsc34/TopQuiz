@@ -6,6 +6,8 @@ import android.renderscript.Element;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class LeaderActivity extends AppCompatActivity {
     public static final int GAME_ACTIVITY_REQUEST_CODE = 42;
     public static final String theNAME = "KEY_1";
     public static final String theSCORE = "KEY_2";
+    private Button mScoreButton;
 
 
     @Override
@@ -35,6 +38,7 @@ public class LeaderActivity extends AppCompatActivity {
         SharedPreferences mPreferences = getSharedPreferences("game_data", MODE_PRIVATE);
         String existingNames = (mPreferences.getString(theNAME, ""));
         String existingScores = (mPreferences.getString(theSCORE, ""));
+        mScoreButton = findViewById(R.id.setByScoreButton);
 
         String[] namesArray = existingNames.split(", ");
         String[] scoresStringArray = existingScores.split(", ");
@@ -45,32 +49,38 @@ public class LeaderActivity extends AppCompatActivity {
             scoresArray.add(foo);
         }
         HashMap<String, Integer> scoresMap = new HashMap<>();
-        for (int i = 0; i < scoresArray.size(); i++){
-            scoresMap.put(namesArray[i], scoresArray.get(i));}
+        for (int i = 0; i < scoresArray.size(); i++) {
+            scoresMap.put(namesArray[i], scoresArray.get(i));
+        }
 
-        LinkedList list = new LinkedList(scoresMap.entrySet());
+        final LinkedList list = new LinkedList(scoresMap.entrySet());
         // Defined Custom Comparator here
 
-            Collections.sort(list, new Comparator() {
-                public int compare(Object mapEntry1, Object mapEntry2) {
-                    return ((Comparable) ((Map.Entry) (mapEntry1)).getValue())
-                            .compareTo(((Map.Entry) (mapEntry2)).getValue());
-                }
+        Collections.sort(list, new Comparator() {
+            public int compare(Object mapEntry1, Object mapEntry2) {
+                return ((Comparable) ((Map.Entry) (mapEntry1)).getValue())
+                        .compareTo(((Map.Entry) (mapEntry2)).getValue());
+            }
 
-            });
-
-
-
+        });
 
         setContentView(R.layout.activity_leader2);
-        TextView textView = findViewById(R.id.textViewName);
-
-
-        for (Map.Entry<String, Integer> entry : scoresMap.entrySet()) {
-            textView.append(entry.getKey() +
-                    "\t\t\t\t" + entry.getValue() + "\n");
+        final TextView textView = findViewById(R.id.textViewName);
+        for (int i = 0; i < list.size(); i++) {
+            textView.append(list.get(i) + "\n\n");
         }
+
+        mScoreButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Collections.reverse(list);
+                textView.setText("");
+                for (int i = 0; i < list.size(); i++)
+                    textView.append(list.get(i) + "\n\n");
+            }
+        });
 
     }
 }
+
 
