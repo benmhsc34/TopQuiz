@@ -29,6 +29,7 @@ public class LeaderActivity extends AppCompatActivity {
     public static final String theNAME = "KEY_1";
     public static final String theSCORE = "KEY_2";
     private Button mScoreButton;
+    private TextView mTextView;
 
 
     @Override
@@ -65,24 +66,19 @@ public class LeaderActivity extends AppCompatActivity {
         });
 
         Collections.reverse(list);
-        if (list.size() > 4) {
-            for (int i = 5; i < list.size(); i++) {
-                list.remove(i);
-            }
-        }
 
         setContentView(R.layout.activity_leader2);
-        final TextView textView = findViewById(R.id.textViewName);
+        mTextView = findViewById(R.id.textViewName);
 
-        for (int i = 0; i < list.size(); i++) {
-            textView.append(list.get(i) + "\n\n");
+        for (int i = 0; i < 5; i++) {
+            mTextView.append(list.get(i) + "\n\n");
 
         }
 
         mScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                mTextView.setText("Hey boyyyyyys");
             }
         });
 
