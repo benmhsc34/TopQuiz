@@ -38,14 +38,22 @@
             android:text="Set by score" />
 
         <TextView
-            android:id="@+id/textViewName"
+        android:id="@+id/textViewName"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="160dp"
+        android:gravity="center"
+        android:textAlignment="textStart"
+        tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/textViewName2"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="160dp"
             android:gravity="center"
             android:textAlignment="textStart"
             tools:ignore="RtlHardcoded" />
-
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

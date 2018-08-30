@@ -64,19 +64,25 @@ public class LeaderActivity extends AppCompatActivity {
 
         });
 
+        Collections.reverse(list);
+        if (list.size() > 4) {
+            for (int i = 5; i < list.size(); i++) {
+                list.remove(i);
+            }
+        }
+
         setContentView(R.layout.activity_leader2);
         final TextView textView = findViewById(R.id.textViewName);
+
         for (int i = 0; i < list.size(); i++) {
             textView.append(list.get(i) + "\n\n");
+
         }
 
         mScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Collections.reverse(list);
-                textView.setText("");
-                for (int i = 0; i < list.size(); i++)
-                    textView.append(list.get(i) + "\n\n");
+
             }
         });
 
