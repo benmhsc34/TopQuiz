@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.benjamincorben.android.topquiz.R;
 
 import java.security.Key;
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -22,6 +24,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 
 public class LeaderActivity extends AppCompatActivity {
 
@@ -29,7 +32,7 @@ public class LeaderActivity extends AppCompatActivity {
     public static final String theNAME = "KEY_1";
     public static final String theSCORE = "KEY_2";
     private Button mScoreButton;
-    private TextView mTextView;
+    private EditText mTextView;
 
 
     @Override
@@ -67,7 +70,6 @@ public class LeaderActivity extends AppCompatActivity {
 
         Collections.reverse(list);
 
-        setContentView(R.layout.activity_leader2);
         mTextView = findViewById(R.id.textViewName);
 
         for (int i = 0; i < 5; i++) {
@@ -75,10 +77,14 @@ public class LeaderActivity extends AppCompatActivity {
 
         }
 
-        mScoreButton.setOnClickListener(new View.OnClickListener() {
+
+       mScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mTextView.setText("Hey boyyyyyys");
+
+                for (int i = 0; i < 5; i++) {
+                    mTextView.append(list.get(i) + "\n\n");
+                }
             }
         });
 

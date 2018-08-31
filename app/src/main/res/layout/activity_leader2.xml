@@ -37,23 +37,17 @@
             android:layout_toRightOf="@+id/setByAlphabetButton"
             android:text="Set by score" />
 
-        <TextView
-        android:id="@+id/textViewName"
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="160dp"
-        android:gravity="center"
-        android:textAlignment="textStart"
-        tools:ignore="RtlHardcoded" />
-
-        <TextView
-            android:id="@+id/textViewName2"
+        <EditText
+            android:id="@+id/textViewName"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="160dp"
+            android:layout_marginLeft="150dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:gravity="center"
             android:textAlignment="textStart"
             tools:ignore="RtlHardcoded" />
+
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
