@@ -32,7 +32,8 @@ public class LeaderActivity extends AppCompatActivity {
     public static final String theNAME = "KEY_1";
     public static final String theSCORE = "KEY_2";
     private Button mScoreButton;
-    private EditText mTextView;
+    private Button mAlphaButton;
+    private TextView mTextView;
 
 
     @Override
@@ -43,6 +44,7 @@ public class LeaderActivity extends AppCompatActivity {
         String existingNames = (mPreferences.getString(theNAME, ""));
         String existingScores = (mPreferences.getString(theSCORE, ""));
         mScoreButton = findViewById(R.id.setByScoreButton);
+        mAlphaButton = findViewById(R.id.setByAlphabetButton);
 
         String[] namesArray = existingNames.split(", ");
         String[] scoresStringArray = existingScores.split(", ");
@@ -77,16 +79,41 @@ public class LeaderActivity extends AppCompatActivity {
 
         }
 
-
-       mScoreButton.setOnClickListener(new View.OnClickListener() {
+        mScoreButton.setEnabled(false);
+        mScoreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                for (int i = 0; i < 5; i++) {
-                    mTextView.append(list.get(i) + "\n\n");
-                }
+                mScoreButton.setEnabled(false);
+                mAlphaButton.setEnabled(true);
             }
         });
+
+        mAlphaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Collections.sort(list, new Comparator() {
+                    public int compare(Object mapEntry1, Object mapEntry2) {
+                        return ((Comparable) ((Map.Entry) (mapEntry1)).getKey())
+                                .compareTo(((Map.Entry) (mapEntry2)).getKey());
+                    }
+                });
+
+
+                mTextView.setText("");
+                for (
+                        int i = 0;
+                        i < 5; i++)
+
+                {
+
+                    mTextView.append(list.get(i) + "\n\n");
+                }
+                mScoreButton.setEnabled(true);
+                mAlphaButton.setEnabled(false);
+            }
+        });
+
 
     }
 }
