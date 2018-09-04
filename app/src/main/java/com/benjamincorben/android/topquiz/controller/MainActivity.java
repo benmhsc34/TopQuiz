@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         mLeaderButton = findViewById(R.id.activity_main_leaderboard);
         mUser = new User();
         mPlayButton.setEnabled(false);
-        mLeaderButton.setEnabled(false);
         mPreferences = getSharedPreferences("game_data", MODE_PRIVATE);
 
 
@@ -104,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
                 gameActivityIntent.putExtra("name", mNameInput.getText().toString());
                 startActivityForResult(gameActivityIntent, GAME_ACTIVITY_REQUEST_CODE);
-                
+
             }
         });
 

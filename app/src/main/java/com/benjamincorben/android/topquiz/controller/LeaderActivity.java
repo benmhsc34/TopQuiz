@@ -54,11 +54,10 @@ public class LeaderActivity extends AppCompatActivity {
         String[] scoresStringArray = existingScores.split(", ");
         ArrayList<Integer> scoresArray = new ArrayList<>();
 
-        for (int i = 0; i <= scoresStringArray.length ; i++) {
-            int foo = Integer.parseInt(scoresStringArray[i]);
+        for (String aScoresStringArray : scoresStringArray) {
+            int foo = Integer.parseInt(aScoresStringArray);
             scoresArray.add(foo);
         }
-
         HashMap<String, Integer> scoresMap = new HashMap<>();
         for (int i = 0; i < scoresArray.size(); i++) {
             scoresMap.put(namesArray[i], scoresArray.get(i));
@@ -143,6 +142,7 @@ public class LeaderActivity extends AppCompatActivity {
                     for (int i = 0; i < list.size(); i++)
                         mTextView.append(list.get(i) + "\n\n");
                 }
+
                 mScoreButton.setEnabled(true);
                 mAlphaButton.setEnabled(false);
             }
