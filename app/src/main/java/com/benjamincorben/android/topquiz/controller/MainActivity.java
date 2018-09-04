@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         mLeaderButton = findViewById(R.id.activity_main_leaderboard);
         mUser = new User();
         mPlayButton.setEnabled(false);
+        mLeaderButton.setEnabled(false);
         mPreferences = getSharedPreferences("game_data", MODE_PRIVATE);
 
 
@@ -78,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent leaderActivityIntent = new Intent(MainActivity.this, LeaderActivity.class);
                 startActivity(leaderActivityIntent);
-
-
             }
         });
 
@@ -96,10 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
-
 
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,11 +104,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent gameActivityIntent = new Intent(MainActivity.this, GameActivity.class);
                 gameActivityIntent.putExtra("name", mNameInput.getText().toString());
                 startActivityForResult(gameActivityIntent, GAME_ACTIVITY_REQUEST_CODE);
-
-
+                
             }
         });
-
 
         mLeaderButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,8 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent leaderActivityIntent = new Intent(MainActivity.this, LeaderActivity.class);
                 startActivity(leaderActivityIntent);
-
-
             }
         });
 

@@ -3,6 +3,7 @@ package com.benjamincorben.android.topquiz.controller;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.renderscript.Element;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,8 +22,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.TreeSet;
 
@@ -46,14 +49,16 @@ public class LeaderActivity extends AppCompatActivity {
         mScoreButton = findViewById(R.id.setByScoreButton);
         mAlphaButton = findViewById(R.id.setByAlphabetButton);
 
+
         String[] namesArray = existingNames.split(", ");
         String[] scoresStringArray = existingScores.split(", ");
         ArrayList<Integer> scoresArray = new ArrayList<>();
 
-        for (String aScoresStringArray : scoresStringArray) {
-            int foo = Integer.parseInt(aScoresStringArray);
+        for (int i = 0; i <= scoresStringArray.length ; i++) {
+            int foo = Integer.parseInt(scoresStringArray[i]);
             scoresArray.add(foo);
         }
+
         HashMap<String, Integer> scoresMap = new HashMap<>();
         for (int i = 0; i < scoresArray.size(); i++) {
             scoresMap.put(namesArray[i], scoresArray.get(i));
@@ -71,43 +76,72 @@ public class LeaderActivity extends AppCompatActivity {
         });
 
         Collections.reverse(list);
-
         mTextView = findViewById(R.id.textViewName);
 
-        for (int i = 0; i < 5; i++) {
-            mTextView.append(list.get(i) + "\n\n");
-
+        if (list.size() > 5) {
+            for (int i = 0; i < 5; i++) {
+                mTextView.append(list.get(i) + "\n\n");
+            }
+        } else {
+            for (int i = 0; i < list.size(); i++)
+                mTextView.append(list.get(i) + "\n\n");
         }
 
         mScoreButton.setEnabled(false);
-        mScoreButton.setOnClickListener(new View.OnClickListener() {
+        mScoreButton.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View view) {
+
+                mTextView.setText("");
+                Collections.sort(list, new Comparator() {
+                    public int compare(Object mapEntry1, Object mapEntry2) {
+                        return ((Comparable) ((Map.Entry) (mapEntry1)).getValue())
+                                .compareTo(((Map.Entry) (mapEntry2)).getValue());
+                    }
+
+                });
+
+                Collections.reverse(list);
+
+                if (list.size() > 5) {
+                    for (int i = 0; i < 5; i++) {
+                        mTextView.append(list.get(i) + "\n\n");
+                    }
+                } else {
+                    for (int i = 0; i < list.size(); i++)
+                        mTextView.append(list.get(i) + "\n\n");
+                }
 
                 mScoreButton.setEnabled(false);
                 mAlphaButton.setEnabled(true);
             }
+
+
         });
 
-        mAlphaButton.setOnClickListener(new View.OnClickListener() {
+        mAlphaButton.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View view) {
-                Collections.sort(list, new Comparator() {
-                    public int compare(Object mapEntry1, Object mapEntry2) {
-                        return ((Comparable) ((Map.Entry) (mapEntry1)).getKey())
-                                .compareTo(((Map.Entry) (mapEntry2)).getKey());
-                    }
-                });
 
+                    Collections.sort(list.subList(0, list.size()), new Comparator() {
+                        public int compare(Object mapEntry1, Object mapEntry2) {
+                            return ((Comparable) ((Map.Entry) (mapEntry1)).getKey())
+                                    .compareTo(((Map.Entry) (mapEntry2)).getKey());
+                        }
+                    });
 
                 mTextView.setText("");
-                for (
-                        int i = 0;
-                        i < 5; i++)
-
-                {
-
-                    mTextView.append(list.get(i) + "\n\n");
+                if (list.size() > 5) {
+                    for (int i = 0; i < 5; i++) {
+                        mTextView.append(list.get(i) + "\n\n");
+                    }
+                } else {
+                    for (int i = 0; i < list.size(); i++)
+                        mTextView.append(list.get(i) + "\n\n");
                 }
                 mScoreButton.setEnabled(true);
                 mAlphaButton.setEnabled(false);
@@ -117,5 +151,6 @@ public class LeaderActivity extends AppCompatActivity {
 
     }
 }
+
 
 
