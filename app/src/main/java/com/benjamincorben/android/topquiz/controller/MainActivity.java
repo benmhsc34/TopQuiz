@@ -70,8 +70,6 @@ public class MainActivity extends AppCompatActivity {
         mUser = new User();
         mPlayButton.setEnabled(false);
         mPreferences = getSharedPreferences("game_data", MODE_PRIVATE);
-
-
         mLeaderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

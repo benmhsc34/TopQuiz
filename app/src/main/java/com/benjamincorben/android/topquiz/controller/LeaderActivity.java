@@ -132,34 +132,41 @@ public class LeaderActivity extends AppCompatActivity {
         {
             @Override
             public void onClick(View view) {
-
-                Collections.sort(list.subList(0, 5), new Comparator() {
-                    public int compare(Object mapEntry1, Object mapEntry2) {
-                        return ((Comparable) ((Map.Entry) (mapEntry1)).getKey())
-                                .compareTo(((Map.Entry) (mapEntry2)).getKey());
-                    }
-                });
-
-                mTextView.setText("");
-                if (list.size() > 5) {
-                    for (int i = 0; i < 5; i++) {
-                        mTextView.append(list.get(i) + "\n\n");
-                    }
-                } else if (list.size() == 0) {
-                    mTextView.append("No scores yet to show");
-                } else {
-                    for (int i = 0; i < list.size(); i++)
-                        mTextView.append(list.get(i) + "\n\n");
-                }
-
                 mScoreButton.setEnabled(true);
                 mAlphaButton.setEnabled(false);
-            }
-        });
 
+                if (list.size() == 0) {
+                    mTextView.setText("");
+                    mTextView.append("No scores yet to show");
+                } else if (list.size() > 5) {
+                    mTextView.setText("");
+                    List list2 = list.subList(0,5);
+                    Collections.sort(list2, new Comparator() {
+                        public int compare(Object mapEntry1, Object mapEntry2) {
+                            return ((Comparable) ((Map.Entry) (mapEntry1)).getKey())
+                                    .compareTo(((Map.Entry) (mapEntry2)).getKey());
+                        }
+                    });
+                    for (int i = 0; i < 5; i++)
+                        mTextView.append(list2.get(i) + "\n\n");
+                } else {
+                    Collections.sort(list, new Comparator() {
+                        public int compare(Object mapEntry1, Object mapEntry2) {
+                            return ((Comparable) ((Map.Entry) (mapEntry1)).getKey())
+                                    .compareTo(((Map.Entry) (mapEntry2)).getKey());
+                        }
+                    });
+                    mTextView.setText("");
+                        for (int i = 0; i < list.size(); i++) {
+                            mTextView.append(list.get(i) + "\n\n");
+                        }
+                    }
 
+                }
+            });
+        }
     }
-}
+
 
 
 
