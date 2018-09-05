@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 gameActivityIntent.putExtra("name", mNameInput.getText().toString());
                 startActivityForResult(gameActivityIntent, GAME_ACTIVITY_REQUEST_CODE);
 
+
             }
         });
 

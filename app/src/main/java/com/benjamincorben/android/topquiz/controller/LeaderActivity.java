@@ -54,9 +54,14 @@ public class LeaderActivity extends AppCompatActivity {
         String[] scoresStringArray = existingScores.split(", ");
         ArrayList<Integer> scoresArray = new ArrayList<>();
 
-        for (String aScoresStringArray : scoresStringArray) {
-            int foo = Integer.parseInt(aScoresStringArray);
-            scoresArray.add(foo);
+        if (scoresStringArray[0].equals("")) {
+            mTextView = findViewById(R.id.textViewName);
+            mTextView.append("No scores yet to show");
+        } else {
+            for (String aScoresStringArray : scoresStringArray) {
+                int foo = Integer.parseInt(aScoresStringArray);
+                scoresArray.add(foo);
+            }
         }
         HashMap<String, Integer> scoresMap = new HashMap<>();
         for (int i = 0; i < scoresArray.size(); i++) {
@@ -108,6 +113,8 @@ public class LeaderActivity extends AppCompatActivity {
                     for (int i = 0; i < 5; i++) {
                         mTextView.append(list.get(i) + "\n\n");
                     }
+                } else if (list.size() == 0) {
+                    mTextView.append("No scores yet to show");
                 } else {
                     for (int i = 0; i < list.size(); i++)
                         mTextView.append(list.get(i) + "\n\n");
@@ -126,18 +133,20 @@ public class LeaderActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                    Collections.sort(list.subList(0, list.size()), new Comparator() {
-                        public int compare(Object mapEntry1, Object mapEntry2) {
-                            return ((Comparable) ((Map.Entry) (mapEntry1)).getKey())
-                                    .compareTo(((Map.Entry) (mapEntry2)).getKey());
-                        }
-                    });
+                Collections.sort(list.subList(0, 5), new Comparator() {
+                    public int compare(Object mapEntry1, Object mapEntry2) {
+                        return ((Comparable) ((Map.Entry) (mapEntry1)).getKey())
+                                .compareTo(((Map.Entry) (mapEntry2)).getKey());
+                    }
+                });
 
                 mTextView.setText("");
                 if (list.size() > 5) {
                     for (int i = 0; i < 5; i++) {
                         mTextView.append(list.get(i) + "\n\n");
                     }
+                } else if (list.size() == 0) {
+                    mTextView.append("No scores yet to show");
                 } else {
                     for (int i = 0; i < list.size(); i++)
                         mTextView.append(list.get(i) + "\n\n");
