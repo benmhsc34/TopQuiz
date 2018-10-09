@@ -57,6 +57,7 @@ public class LeaderActivity extends AppCompatActivity {
         if (scoresStringArray[0].equals("")) {
             mTextView = findViewById(R.id.textViewName);
             mTextView.append("No scores yet to show");
+
         } else {
             for (String aScoresStringArray : scoresStringArray) {
                 int foo = Integer.parseInt(aScoresStringArray);

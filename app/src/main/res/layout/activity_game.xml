@@ -26,7 +26,9 @@
             android:text="Question?"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold">
+
+        </TextView>
 
         <Button
             android:id="@+id/activity_game_answer1_btn"

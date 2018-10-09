@@ -42,8 +42,11 @@ public class MainActivity extends AppCompatActivity {
             String alreadyExistingScores = mPreferences.getString(theSCORE, "");
             if (alreadyExistingScores.equals("")) {
                 alreadyExistingScores += score;
+                mLeaderButton.setVisibility(View.VISIBLE);
             } else {
                 alreadyExistingScores += ", " + score;
+                mLeaderButton.setVisibility(View.VISIBLE);
+
             }
             mPreferences.edit().putString(theSCORE, alreadyExistingScores).apply();
 
@@ -70,6 +73,16 @@ public class MainActivity extends AppCompatActivity {
         mUser = new User();
         mPlayButton.setEnabled(false);
         mPreferences = getSharedPreferences("game_data", MODE_PRIVATE);
+
+        String alreadyExistingScores = mPreferences.getString(theSCORE, "");
+        if (alreadyExistingScores.equals("")){
+            mLeaderButton.setVisibility(View.INVISIBLE);
+        } else {
+            mLeaderButton.setVisibility(View.VISIBLE);
+        }
+
+
+
         mLeaderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
